@@ -1,8 +1,13 @@
 import React from 'react';
 
+// importamos redux Store
+import store from './store.js';
+import  { Provider} from 'react-redux';
+
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="container">
       <header>
         <h1 className="text-center">Administrador de pacientes de veterinaria</h1>
@@ -16,6 +21,7 @@ function App() {
         </div>
       </div>
     </div>
+    </Provider>
   );
 }
 
