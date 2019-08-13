@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { agregarCitaAction } from "../actions/citasActions";
 import { validarFormularioAction } from "../actions/validarActions";
 import uuid from "uuid/v4";
@@ -22,6 +22,10 @@ const AgregarCita = () => {
         dispatch(validarFormularioAction(estado));
     };
 
+    // useSelector para acceder directamente al state
+    // similar a mapstateToProps en Hooks
+    const error = useSelector(state => state.error);
+    
     //cuando el formulario es enviado
     const submitNuevaCita = e => {
         e.preventDefault();
@@ -167,6 +171,7 @@ const AgregarCita = () => {
                         </div>
                     </div>
                 </form>
+                {error.error ? <div className="alert alert-danger text-center p2">Todos los campos son obligatorios</div> : null}
             </div>
         </div>
     );
