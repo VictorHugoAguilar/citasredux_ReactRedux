@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { agregarCitaAction } from '../actions/citasActions';
-import uuid from 'uuid/v4';
+import { useDispatch } from "react-redux";
+import { agregarCitaAction } from "../actions/citasActions";
+import { validarFormularioAction } from "../actions/validarActions";
+import uuid from "uuid/v4";
 
 const AgregarCita = () => {
     // Añadimos datos al state State del componente
@@ -13,16 +14,45 @@ const AgregarCita = () => {
 
     // Dispatch para ejecutar nuestras acciones
     const dispatch = useDispatch();
-    const agregarNuevaCita = (cita) => {
-        dispatch(agregarCitaAction(cita) )
-    }
+    const agregarNuevaCita = cita => {
+        dispatch(agregarCitaAction(cita));
+    };
+
+    const validarFormulario = estado => {
+        dispatch(validarFormularioAction(estado));
+    };
 
     //cuando el formulario es enviado
     const submitNuevaCita = e => {
         e.preventDefault();
 
         // validar formulario
-        
+        if (mascota.trim() === "") {
+            validarFormulario(true);
+            return;
+        }
+
+        if (propietario.trim() === "") {
+            validarFormulario(true);
+            return;
+        }
+
+        if (fecha.trim() === "") {
+            validarFormulario(true);
+            return;
+        }
+
+        if (hora.trim() === "") {
+            validarFormulario(true);
+            return;
+        }
+
+        if (sintomas.trim() === "") {
+            validarFormulario(true);
+            return;
+        }
+
+        validarFormulario(false);
 
         // crear la nueva cita
         agregarNuevaCita({
@@ -32,17 +62,15 @@ const AgregarCita = () => {
             fecha,
             hora,
             sintomas
-        
-        })        
-        
-        // reiniciar el formulario
-        setMascota('');
-        setPropietario('');
-        setFecha('');
-        setHora('');
-        setSintomas('');
+        });
 
-    }
+        // reiniciar el formulario
+        setMascota("");
+        setPropietario("");
+        setFecha("");
+        setHora("");
+        setSintomas("");
+    };
 
     return (
         <div className="card mt-5">
@@ -50,7 +78,7 @@ const AgregarCita = () => {
                 <h2 className="card-title text-center mb-5">
                     Agrega las citas aqui
                 </h2>
-                <form onSubmit={submitNuevaCita}> 
+                <form onSubmit={submitNuevaCita}>
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">
                             Nombre Mascota
