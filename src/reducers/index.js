@@ -1,8 +1,10 @@
-import { combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import citasReducers from './citasReducers';
+import citasReducers from "./citasReducers";
+import validacionReducers from "./validacionReducers";
 
 export default combineReducers({
-    citas: citasReducers
-    
+    citas: citasReducers,
+    error: validacionReducers
 });
+

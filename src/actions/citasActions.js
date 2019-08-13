@@ -1,7 +1,6 @@
-export const agregarCitaAction = (cita) => {
-
+export const agregarCitaAction = cita => {
     return {
-        type: 'AGREGAR_CITA',
+        type: "AGREGAR_CITA",
         payload: cita
-    }
-}
+    };
+};
