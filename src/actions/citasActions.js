@@ -4,3 +4,10 @@ export const agregarCitaAction = cita => {
         payload: cita
     };
 };
+
+export const borrarCitaAction = id => {
+    return {
+        type: 'BORRAR_CITA',
+        payload: id
+    }
+}
